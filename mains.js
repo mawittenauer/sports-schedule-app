@@ -28,6 +28,7 @@ function getSchedule(league, team, season, callback) {
 }
 
 function setSchedule(league, team, season) {
+  $('#schedule tbody').empty();
   getSchedule(league, team, season, function(schedule) {
     var opponentArray = schedule.opponentArray;
     var dateArray = schedule.dateArray;
@@ -57,5 +58,7 @@ $(document).ready(function() {
   
   $('#selector').append($teamSelect);
   
-  setSchedule("nfl", $teamSelect.val(), "2016");
+  $(document).on("change", "select", function() {
+    setSchedule("nfl", $teamSelect.val(), "2016");
+  });
 });
