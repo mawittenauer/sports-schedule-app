@@ -1,6 +1,6 @@
 var TEAMS = [
-  "Bears", "Bengals", "Bills", "Broncos", "Browns", "Bucaneers",
-  "Cardinals", "Chargers", "Cheifs", "Colts", "Cowboys", "Dolphins",
+  "Bears", "Bengals", "Bills", "Broncos", "Browns", "Buccaneers",
+  "Cardinals", "Chargers", "Chiefs", "Colts", "Cowboys", "Dolphins",
   "Eagles", "Falcons", "Fortyniners", "Giants", "Jaguars", "Jets", "Lions", "Packers",
   "Panthers", "Patriots", "Raiders", "Rams", "Ravens", "Redskins", "Saints",
   "Seahawks", "Steelers", "Texans", "Titans", "Vikings"
