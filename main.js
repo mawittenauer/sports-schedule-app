@@ -1,10 +1,12 @@
-var TEAMS = [
-  "Bears", "Bengals", "Bills", "Broncos", "Browns", "Buccaneers",
-  "Cardinals", "Chargers", "Chiefs", "Colts", "Cowboys", "Dolphins",
-  "Eagles", "Falcons", "Fortyniners", "Giants", "Jaguars", "Jets", "Lions", "Packers",
-  "Panthers", "Patriots", "Raiders", "Rams", "Ravens", "Redskins", "Saints",
-  "Seahawks", "Steelers", "Texans", "Titans", "Vikings"
-];
+var TEAM_COLORS = {
+  "Bears" : "#C83803", "Bengals" : "#FB4F14", "Bills" : "#00338D", "Broncos" : "#FB4F14", "Browns" : "#FB4F14", "Buccaneers" : "#D50A0A",
+  "Cardinals" : "#97233F", "Chargers" : "#0073CF", "Chiefs" : "#E31837", "Colts" : "#002C5F", "Cowboys" : "#002244", "Dolphins" : "#008E97",
+  "Eagles" : "#004953", "Falcons" : "#A71930", "Fortyniners" : "#AA0000", "Giants" : "#0B2265", "Jaguars" : "#006778", "Jets" : "#203731", "Lions" : "#005A8B", "Packers" : "#203731",
+  "Panthers" : "#0085CA", "Patriots" : "#002244", "Raiders" : "#A5ACAF", "Rams" : "#002244", "Ravens" : "#241773", "Redskins" : "#773141", "Saints" : "#9F8958",
+  "Seahawks" : "#002244", "Steelers" : "#FFB612", "Texans" : "#03202F", "Titans" : "#4B92DB", "Vikings" : "#4F2683"
+};
+
+var TEAMS = Object.keys(TEAM_COLORS);
 
 function Schedule() {
   this.opponentArray = [];
@@ -37,7 +39,7 @@ function setSchedule(league, team, season) {
 
     for (var i = 0; i < opponentArray.length; i++) {
       $tableRow = $('<tr>');
-      if (homeAwayArray[i] === "home") { $tableRow.css({"background-color": "#C83803", "color" : "white"}); }
+      if (homeAwayArray[i] === "home") { $tableRow.css({"background-color": TEAM_COLORS[team], "color" : "white"}); }
       $tableRow.append('<td>' + opponentArray[i] + '</td>');
       $('#schedule tbody').append($tableRow);
       $tableRow.append('<td>' + homeAwayArray[i] + '</td>');
