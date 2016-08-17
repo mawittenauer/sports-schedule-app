@@ -32,14 +32,17 @@ function getSchedule(league, team, season, callback) {
 function setSchedule(league, team, season) {
   $('#schedule tbody').empty();
   getSchedule(league, team, season, function(schedule) {
+    $('#team-name').text('');
     var opponentArray = schedule.opponentArray;
     var dateArray = schedule.dateArray;
     var homeAwayArray = schedule.homeAwayArray;
     var startTimeArray = schedule.startTimeArray;
+    var teamColor = TEAM_COLORS[team];
+    $('#team-name').text(team).css("color", teamColor);
 
     for (var i = 0; i < opponentArray.length; i++) {
       $tableRow = $('<tr>');
-      if (homeAwayArray[i] === "home") { $tableRow.css({"background-color": TEAM_COLORS[team], "color" : "white"}); }
+      if (homeAwayArray[i] === "home") { $tableRow.css({"background-color": teamColor, "color" : "white"}); }
       $tableRow.append('<td>' + opponentArray[i] + '</td>');
       $('#schedule tbody').append($tableRow);
       $tableRow.append('<td>' + homeAwayArray[i] + '</td>');
