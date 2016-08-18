@@ -13,6 +13,7 @@ function Schedule() {
   this.dateArray = [];
   this.homeAwayArray = [];
   this.startTimeArray = [];
+  this.teamColor = '';
 }
 
 function getSchedule(league, team, season, callback) {
@@ -25,6 +26,7 @@ function getSchedule(league, team, season, callback) {
     schedule.opponentArray = val["groups"][0]["columns"][2];
     schedule.dateArray = val["groups"][0]["columns"][1];
     schedule.homeAwayArray = val["groups"][0]["columns"][3];
+    schedule.teamColor = TEAM_COLORS[team];
     callback(schedule);
   });
 }
@@ -37,7 +39,7 @@ function setSchedule(league, team, season) {
     var dateArray = schedule.dateArray;
     var homeAwayArray = schedule.homeAwayArray;
     var startTimeArray = schedule.startTimeArray;
-    var teamColor = TEAM_COLORS[team];
+    var teamColor = schedule.teamColor;
     $('#team-name').text(team).css("color", teamColor);
 
     for (var i = 0; i < opponentArray.length; i++) {
@@ -53,7 +55,7 @@ function setSchedule(league, team, season) {
   });
 }
 
-$(document).ready(function() {
+function setUpTeamSelector() {
   var $teamSelect = $('<select class="form-control" id="team-select">');
   var $row = $('<div class="row">');
   
@@ -66,4 +68,8 @@ $(document).ready(function() {
   $(document).on("change", "select", function() {
     setSchedule("nfl", $teamSelect.val(), "2016");
   });
+}
+
+$(document).ready(function() {
+  setUpTeamSelector();
 });
