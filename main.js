@@ -37,6 +37,7 @@ function getSchedule(league, team, season) {
 function setSchedule(league, team, season, schedule) {
   $('#schedule tbody').empty();
   var teamColor = TEAM_COLORS[team];
+  $('#team-name').text(team).css("color", teamColor);
   
   schedule.forEach(function(val) {
     $tableRow = $('<tr>');
