@@ -8,50 +8,45 @@ var TEAM_COLORS = {
 
 var TEAMS = Object.keys(TEAM_COLORS);
 
-function Schedule() {
-  this.opponentArray = [];
-  this.dateArray = [];
-  this.homeAwayArray = [];
-  this.startTimeArray = [];
-  this.teamColor = '';
+function Game() {
+  this.opponent = '';
+  this.date = '';
+  this.venue = '';
+  this.startTime = '';
 }
 
-function getSchedule(league, team, season, callback) {
+function getSchedule(league, team, season) {
   var url = "http://api.sportsdatabase.com/" + 
             league + "/query.json?sdql=start%20time%2Cdate%2Co:team%2Csite%40team%3D" + 
             team + "%20and%20season%3D" + season + "&output=json&api_key=guest&jsoncallback=?";
-  var schedule = new Schedule;
+  var schedule = [];
   $.getJSON(url, function(val) {
-    schedule.startTimeArray = val["groups"][0]["columns"][0];
-    schedule.opponentArray = val["groups"][0]["columns"][2];
-    schedule.dateArray = val["groups"][0]["columns"][1];
-    schedule.homeAwayArray = val["groups"][0]["columns"][3];
-    schedule.teamColor = TEAM_COLORS[team];
-    callback(schedule);
+    for (var i = 0; i < val["groups"][0]["columns"][0].length; i++) {
+      var game = new Game;
+      game.startTime = val["groups"][0]["columns"][0][i];
+      game.opponent = val["groups"][0]["columns"][2][i];
+      game.date = val["groups"][0]["columns"][1][i];
+      game.venue = val["groups"][0]["columns"][3][i];
+      console.log(game.venue);
+      schedule.push(game);
+    }
+    setSchedule(league, team, season, schedule);
   });
 }
 
-function setSchedule(league, team, season) {
+function setSchedule(league, team, season, schedule) {
   $('#schedule tbody').empty();
-  getSchedule(league, team, season, function(schedule) {
-    $('#team-name').text('');
-    var opponentArray = schedule.opponentArray;
-    var dateArray = schedule.dateArray;
-    var homeAwayArray = schedule.homeAwayArray;
-    var startTimeArray = schedule.startTimeArray;
-    var teamColor = schedule.teamColor;
-    $('#team-name').text(team).css("color", teamColor);
-
-    for (var i = 0; i < opponentArray.length; i++) {
-      $tableRow = $('<tr>');
-      if (homeAwayArray[i] === "home") { $tableRow.css({"background-color": teamColor, "color" : "white"}); }
-      $tableRow.append('<td>' + opponentArray[i] + '</td>');
-      $('#schedule tbody').append($tableRow);
-      $tableRow.append('<td>' + homeAwayArray[i] + '</td>');
-      var formattedDate = dateArray[i].toString().substr(0, 4) + '-' + dateArray[i].toString().substr(4, 2) + '-' + dateArray[i].toString().substr(6, 2);
-      $tableRow.append('<td>' + formattedDate + '</td>');
-      $tableRow.append('<td>' + startTimeArray[i] + '</td>');
-    }
+  var teamColor = TEAM_COLORS[team];
+  
+  schedule.forEach(function(val) {
+    $tableRow = $('<tr>');
+    if (val.venue === "home") { $tableRow.css({ "background-color" : teamColor, "color" : "white" }); }
+    $tableRow.append('<td>' + val.opponent + '</td>');
+    $('#schedule tbody').append($tableRow);
+    $tableRow.append('<td>' + val.venue + '</td>');
+    var formattedDate = val.date.toString().substr(0, 4) + '-' + val.date.toString().substr(4, 2) + '-' + val.date.toString().substr(6, 2);
+    $tableRow.append('<td>' + formattedDate + '</td>');
+    $tableRow.append('<td>' + val.startTime + '</td>');
   });
 }
 
@@ -66,7 +61,7 @@ function setUpTeamSelector() {
   $('#selector').append($teamSelect);
   
   $(document).on("change", "select", function() {
-    setSchedule("nfl", $teamSelect.val(), "2016");
+    getSchedule("nfl", $teamSelect.val(), "2016");
   });
 }
 
