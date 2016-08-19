@@ -8,27 +8,29 @@ var TEAM_COLORS = {
 
 var TEAMS = Object.keys(TEAM_COLORS);
 
-function Schedule() {
-  this.opponentArray = [];
-  this.dateArray = [];
-  this.homeAwayArray = [];
-  this.startTimeArray = [];
-  this.teamColor = '';
+function Game() {
+  this.opponent = '';
+  this.date = '';
+  this.venue = '';
+  this.startTime = '';
 }
 
 function getSchedule(league, team, season, callback) {
   var url = "http://api.sportsdatabase.com/" + 
             league + "/query.json?sdql=start%20time%2Cdate%2Co:team%2Csite%40team%3D" + 
             team + "%20and%20season%3D" + season + "&output=json&api_key=guest&jsoncallback=?";
-  var schedule = new Schedule;
+  var schedule = [];
   $.getJSON(url, function(val) {
-    schedule.startTimeArray = val["groups"][0]["columns"][0];
-    schedule.opponentArray = val["groups"][0]["columns"][2];
-    schedule.dateArray = val["groups"][0]["columns"][1];
-    schedule.homeAwayArray = val["groups"][0]["columns"][3];
-    schedule.teamColor = TEAM_COLORS[team];
-    callback(schedule);
+    for (var i = 0; i < val["groups"][0]["columns"][0].length; i++) {
+      var game = new Game;
+      game.startTimeArray = val["groups"][0]["columns"][0][i];
+      game.opponentArray = val["groups"][0]["columns"][2][i];
+      game.dateArray = val["groups"][0]["columns"][1][i];
+      game.homeAwayArray = val["groups"][0]["columns"][3][i];
+      shedule.push(game);
+    }
   });
+  return schedule;
 }
 
 function setSchedule(league, team, season) {
