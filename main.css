@@ -1,3 +1,15 @@
+/*******************
+GENERAL
+*******************/
+
 body {
   margin-top: 40px;  
+}
+
+h1, th {
+  font-family: 'Bevan', cursive;
+}
+
+p, td, select, option {
+  font-family: 'Pontano Sans', sans-serif;
 }
