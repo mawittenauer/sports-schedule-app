@@ -53,7 +53,6 @@ function setSchedule(league, team, season, schedule) {
 
 function setUpTeamSelector() {
   var $teamSelect = $('<select class="form-control" id="team-select">');
-  var $row = $('<div class="row">');
   
   TEAMS.forEach(function(val) {
     $teamSelect.append('<option value=' + val + '>' + val + '</option>');
