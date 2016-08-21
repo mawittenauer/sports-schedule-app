@@ -8,6 +8,15 @@ var TEAM_COLORS = {
 
 var TEAMS = Object.keys(TEAM_COLORS);
 
+function getFormattedTime(fourDigitTime) {
+    var hours24 = parseInt(fourDigitTime.substring(0, 2), 10);
+    var hours = ((hours24 + 11) % 12) + 1;
+    var amPm = hours24 > 11 ? 'pm' : 'am';
+    var minutes = fourDigitTime.substring(2);
+
+    return hours + ':' + minutes + amPm;
+};
+
 function Game() {
   this.opponent = '';
   this.date = '';
@@ -27,7 +36,6 @@ function getSchedule(league, team, season) {
       game.opponent = val["groups"][0]["columns"][2][i];
       game.date = val["groups"][0]["columns"][1][i];
       game.venue = val["groups"][0]["columns"][3][i];
-      console.log(game.venue);
       schedule.push(game);
     }
     setSchedule(league, team, season, schedule);
@@ -47,12 +55,14 @@ function setSchedule(league, team, season, schedule) {
     $tableRow.append('<td>' + val.venue + '</td>');
     var formattedDate = val.date.toString().substr(4, 2) + '-' + val.date.toString().substr(6, 2);
     $tableRow.append('<td>' + formattedDate + '</td>');
-    $tableRow.append('<td>' + val.startTime + '</td>');
+    $tableRow.append('<td>' + getFormattedTime(val.startTime.toString()) + '</td>');
   });
 }
 
 function setUpTeamSelector() {
   var $teamSelect = $('<select class="form-control" id="team-select">');
+  var $defaultSelect = $('<option selected disabled hidden><strong>Select Team Here</strong></option>');
+  $teamSelect.append($defaultSelect);
   
   TEAMS.forEach(function(val) {
     $teamSelect.append('<option value=' + val + '>' + val + '</option>');
