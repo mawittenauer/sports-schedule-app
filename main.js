@@ -45,7 +45,7 @@ function setSchedule(league, team, season, schedule) {
     $tableRow.append('<td>' + val.opponent + '</td>');
     $('#schedule tbody').append($tableRow);
     $tableRow.append('<td>' + val.venue + '</td>');
-    var formattedDate = val.date.toString().substr(0, 4) + '-' + val.date.toString().substr(4, 2) + '-' + val.date.toString().substr(6, 2);
+    var formattedDate = val.date.toString().substr(4, 2) + '-' + val.date.toString().substr(6, 2);
     $tableRow.append('<td>' + formattedDate + '</td>');
     $tableRow.append('<td>' + val.startTime + '</td>');
   });
