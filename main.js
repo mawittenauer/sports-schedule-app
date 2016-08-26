@@ -68,7 +68,12 @@ function getSchedule(league, team, season) {
     }
     for (var i = 0; i < val["groups"][0]["columns"][0].length; i++) {
       var game = new Game;
-      game.startTime = val["groups"][0]["columns"][0][i];
+      var start = val["groups"][0]["columns"][0][i];
+      if (start == null) { 
+        game.startTime = "TBA"; 
+      } else {
+        game.startTime = getFormattedTime(start.toString()); 
+      }
       game.opponent = val["groups"][0]["columns"][2][i];
       game.date = val["groups"][0]["columns"][1][i];
       game.venue = val["groups"][0]["columns"][3][i];
@@ -98,7 +103,7 @@ function displaySchedule(league, team, season, schedule) {
     $tableRow.append('<td>' + val.venue + '</td>');
     var formattedDate = val.date.toString().substr(4, 2) + '-' + val.date.toString().substr(6, 2);
     $tableRow.append('<td>' + formattedDate + '</td>');
-    $tableRow.append('<td>' + getFormattedTime(val.startTime.toString()) + '</td>');
+    $tableRow.append('<td>' + val.startTime + '</td>');
   });
 }
 
