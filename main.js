@@ -59,7 +59,7 @@ function getSchedule(league, team, season) {
 
 function displaySchedule(league, team, season, schedule) {
   $('#schedule tbody').empty();
-  var teamColor = TEAM_COLORS[team];
+  var teamColor = NFL_TEAM_COLORS[team];
   $('#team-name').text(team).css("color", teamColor);
   
   schedule.forEach(function(val) {
@@ -92,22 +92,17 @@ function setUpTeamSelector(league) {
 }
 
 $(document).ready(function() {
-  var $leagueSelect = $('<select class="form-control" id="league-select">');
-  var $defaultSelect = $('<option selected disabled hidden><strong>Select League Here</strong></option>');
-  $leagueSelect.append($defaultSelect);
+  setUpLeagueSelector();
   
-  LEAGUES.forEach(function(val) {
-    $leagueSelect.append('<option value=' + val + '>' + val + '</option>');
-  });
-  
-  $('#selector').append($leagueSelect);
   $('#league-select').change(function() {
     $('#league-select').siblings().remove();
     var league = $('#league-select').val();
     setUpTeamSelector(league);
   });
   
-  $('#team-select').on("change", function() {
-    getSchedule("nfl", "Bears", "2016");
+  $(document).on("change", "#team-select", function() {
+    console.log("fart");
+    getSchedule($('#league-select').val().toLowerCase(), $('#team-select').val(), "2016");
   });
+  
 });
