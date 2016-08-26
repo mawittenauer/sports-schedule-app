@@ -1,4 +1,4 @@
-var TEAM_COLORS = {
+var NFL_TEAM_COLORS = {
   "Bears" : "#C83803", "Bengals" : "#FB4F14", "Bills" : "#00338D", "Broncos" : "#FB4F14", "Browns" : "#FB4F14", "Buccaneers" : "#D50A0A",
   "Cardinals" : "#97233F", "Chargers" : "#0073CF", "Chiefs" : "#E31837", "Colts" : "#002C5F", "Cowboys" : "#002244", "Dolphins" : "#008E97",
   "Eagles" : "#004953", "Falcons" : "#A71930", "Fortyniners" : "#AA0000", "Giants" : "#0B2265", "Jaguars" : "#006778", "Jets" : "#203731", "Lions" : "#005A8B", "Packers" : "#203731",
@@ -6,7 +6,9 @@ var TEAM_COLORS = {
   "Seahawks" : "#002244", "Steelers" : "#FFB612", "Texans" : "#03202F", "Titans" : "#4B92DB", "Vikings" : "#4F2683"
 };
 
-var TEAMS = Object.keys(TEAM_COLORS);
+var LEAGUES = [ "NFL", "NBA", "MLB" ];
+
+var NFL_TEAMS = Object.keys(NFL_TEAM_COLORS);
 
 function getFormattedTime(fourDigitTime) {
     var hours24 = parseInt(fourDigitTime.substring(0, 2), 10);
@@ -22,6 +24,22 @@ function Game() {
   this.date = '';
   this.venue = '';
   this.startTime = '';
+}
+
+function setUpLeagueSelector() {
+  var $leagueSelect = $('<select class="form-control" id="league-select">');
+  var $defaultSelect = $('<option selected disabled hidden><strong>Select League Here</strong></option>');
+  $leagueSelect.append($defaultSelect);
+  
+  LEAGUES.forEach(function(val) {
+    $leagueSelect.append('<option value=' + val + '>' + val + '</option>');
+  });
+  
+  $('#selector').append($leagueSelect);
+  
+  $('#league-select').on("change", function() {
+    setUpTeamSelector($leagueSelect.val());
+  });
 }
 
 function getSchedule(league, team, season) {
@@ -59,22 +77,26 @@ function displaySchedule(league, team, season, schedule) {
   });
 }
 
-function setUpTeamSelector() {
+function setUpTeamSelector(league) {
   var $teamSelect = $('<select class="form-control" id="team-select">');
   var $defaultSelect = $('<option selected disabled hidden><strong>Select Team Here</strong></option>');
   $teamSelect.append($defaultSelect);
+  var teams = [];
   
-  TEAMS.forEach(function(val) {
+  if (league == "NFL") {
+    teams = NFL_TEAMS;
+  }
+  
+  teams.forEach(function(val) {
     $teamSelect.append('<option value=' + val + '>' + val + '</option>');
   });
   
   $('#selector').append($teamSelect);
-  
-  $('#selector').on("change", "select", function() {
-    getSchedule("nfl", $teamSelect.val(), "2016");
-  });
 }
 
 $(document).ready(function() {
-  setUpTeamSelector();
+  setUpLeagueSelector();
+  $('#team-select').on("change", function() {
+    getSchedule("nfl", "Bears", "2016");
+  });
 });
