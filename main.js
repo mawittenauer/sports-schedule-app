@@ -6,9 +6,17 @@ var NFL_TEAM_COLORS = {
   "Seahawks" : "#002244", "Steelers" : "#FFB612", "Texans" : "#03202F", "Titans" : "#4B92DB", "Vikings" : "#4F2683"
 };
 
-var LEAGUES = [ "NFL", "NBA", "MLB" ];
+var NBA_TEAM_COLORS = {
+  "Hawks" : "#E13A3E", "Celtics" : "#008348", "Brooklyn" : "#061922", "Hornets" : "#1D1160"
+}
+
+var MLB_TEAM_COLORS = { "Indians" : "#E31937" }
+
+var LEAGUES = [ "NFL", "MLB" ];
 
 var NFL_TEAMS = Object.keys(NFL_TEAM_COLORS);
+var MLB_TEAMS = Object.keys(MLB_TEAM_COLORS);
+var NBA_TEAMS = Object.keys(NBA_TEAM_COLORS)
 
 function getFormattedTime(fourDigitTime) {
     var hours24 = parseInt(fourDigitTime.substring(0, 2), 10);
@@ -60,6 +68,13 @@ function getSchedule(league, team, season) {
 function displaySchedule(league, team, season, schedule) {
   $('#schedule tbody').empty();
   var teamColor = NFL_TEAM_COLORS[team];
+  if (league === "nfl") {
+    var teamColor = NFL_TEAM_COLORS[team];
+  } else if (league === "nba") {
+    var teamColor = NBA_TEAM_COLORS[team];
+  } else if (league === "mlb") {
+    var teamColor = MLB_TEAM_COLORS[team];
+  }
   $('#team-name').text(team).css("color", teamColor);
   
   schedule.forEach(function(val) {
@@ -82,6 +97,10 @@ function setUpTeamSelector(league) {
   
   if (league == "NFL") {
     teams = NFL_TEAMS;
+  } else if (league == "NBA") {
+    teams = NBA_TEAMS;
+  } else if (league == "MLB") {
+    teams = MLB_TEAMS;
   }
   
   teams.forEach(function(val) {
@@ -101,7 +120,6 @@ $(document).ready(function() {
   });
   
   $(document).on("change", "#team-select", function() {
-    console.log("fart");
     getSchedule($('#league-select').val().toLowerCase(), $('#team-select').val(), "2016");
   });
   
