@@ -38,11 +38,11 @@ function getSchedule(league, team, season) {
       game.venue = val["groups"][0]["columns"][3][i];
       schedule.push(game);
     }
-    setSchedule(league, team, season, schedule);
+    displaySchedule(league, team, season, schedule);
   });
 }
 
-function setSchedule(league, team, season, schedule) {
+function displaySchedule(league, team, season, schedule) {
   $('#schedule tbody').empty();
   var teamColor = TEAM_COLORS[team];
   $('#team-name').text(team).css("color", teamColor);
