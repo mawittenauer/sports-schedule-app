@@ -1,22 +1,29 @@
 var NFL_TEAM_COLORS = {
-  "Bears" : "#C83803", "Bengals" : "#FB4F14", "Bills" : "#00338D", "Broncos" : "#FB4F14", "Browns" : "#FB4F14", "Buccaneers" : "#D50A0A",
-  "Cardinals" : "#97233F", "Chargers" : "#0073CF", "Chiefs" : "#E31837", "Colts" : "#002C5F", "Cowboys" : "#002244", "Dolphins" : "#008E97",
-  "Eagles" : "#004953", "Falcons" : "#A71930", "Fortyniners" : "#AA0000", "Giants" : "#0B2265", "Jaguars" : "#006778", "Jets" : "#203731", "Lions" : "#005A8B", "Packers" : "#203731",
-  "Panthers" : "#0085CA", "Patriots" : "#002244", "Raiders" : "#A5ACAF", "Rams" : "#002244", "Ravens" : "#241773", "Redskins" : "#773141", "Saints" : "#9F8958",
-  "Seahawks" : "#002244", "Steelers" : "#FFB612", "Texans" : "#03202F", "Titans" : "#4B92DB", "Vikings" : "#4F2683"
+  "Bears" : "#C83803", "Bengals" : "#FB4F14", "Bills" : "#00338D", "Broncos" : "#FB4F14", "Browns" : "#FB4F14", 
+  "Buccaneers" : "#D50A0A", "Cardinals" : "#97233F", "Chargers" : "#0073CF", "Chiefs" : "#E31837", "Colts" : "#002C5F", 
+  "Cowboys" : "#002244", "Dolphins" : "#008E97", "Eagles" : "#004953", "Falcons" : "#A71930", "Fortyniners" : "#AA0000", 
+  "Giants" : "#0B2265", "Jaguars" : "#006778", "Jets" : "#203731", "Lions" : "#005A8B", "Packers" : "#203731",
+  "Panthers" : "#0085CA", "Patriots" : "#002244", "Raiders" : "#A5ACAF", "Rams" : "#002244", "Ravens" : "#241773", 
+  "Redskins" : "#773141", "Saints" : "#9F8958", "Seahawks" : "#002244", "Steelers" : "#FFB612", "Texans" : "#03202F", 
+  "Titans" : "#4B92DB", "Vikings" : "#4F2683"
 };
 
 var NBA_TEAM_COLORS = {
-  "Hawks" : "#E13A3E", "Celtics" : "#008348", "Brooklyn" : "#061922", "Hornets" : "#1D1160"
+  "Hawks" : "#E13A3E", "Celtics" : "#008348", "Nets" : "#061922", "Hornets" : "#1D1160", "Bulls" : "#CE1141",
+  "Caveliers" : "#FDBB30", "Mavericks" : "#007DC5", "Nuggets" : "#4D90CD", "Pistons" : "#ED174C", "Warriors" : "#FDB927",
+  "Rockets" : "#CE1141", "Pacers" : "#FFC633", "Clippers" : "#ED1744C", "Lakers" : "#552582", "Grizzlies" : "#0F586C",
+  "Heat" : "#98002E", "Bucks" : "#00471B", "Timberwolves" : "#005083", "Pelicans" : "#002B5C", "Knicks" : "#006BB6",
+  "Thunder" : "#007DC3", "Magic" : "#007DC5", "76ERS" : "#ED174C", "Suns" : "#E56020", "Trail Blazers" : "#E03A3E",
+  "Kings" : "#724C9F", "Spurs" : "#BAC3C9", "Raptors" : "#CE1141", "Jazz" : "#002B5C", "Wizards" : "#002B5C"
 };
 
-var MLB_TEAM_COLORS = { "Indians" : "#E31937", "Diamondbacks" : "#A71930", "Braves" : "#CE1141", "Orioles" : "#DF4601", 
-                       "Red Sox" : "#BD3039", "Cubs" : "#CC3433", "White Sox" : "#000000", "Reds" : "#C6011F",
-                       "Rockies" : "#333366", "Tigers" : "#0C2C56", "Astros" : "#002D62", "Royals" : "#004687",
-                       "Angels" : "#003263", "Dodgers" : "#EF3E42", "Marlins" : "#FF6600", "Brewers" : "#0A2351",
-                       "Twins" : "#002B5C", "Mets" : "#FF5910", "Yankees" : "#E4002B", "Athletics" : "#003831", "Phillies" : "#284898",
-                       "Pirates" : "#FDB827", "Padres" : "#002D62", "Giants" : "#FD5A1E", "Mariners" : "#0C2C56", "Cardinals" : "#C41E3A",
-                       "Rays" : "#092C5C", "Ranges" : "#C0111F", "Blue Jays" : "#134A8E", "Nationals" : "#AB0003"
+var MLB_TEAM_COLORS = { 
+  "Indians" : "#E31937", "Diamondbacks" : "#A71930", "Braves" : "#CE1141", "Orioles" : "#DF4601", "Red Sox" : "#BD3039", 
+  "Cubs" : "#CC3433", "White Sox" : "#000000", "Reds" : "#C6011F", "Rockies" : "#333366", "Tigers" : "#0C2C56", 
+  "Astros" : "#002D62", "Royals" : "#004687", "Angels" : "#003263", "Dodgers" : "#EF3E42", "Marlins" : "#FF6600", 
+  "Brewers" : "#0A2351", "Twins" : "#002B5C", "Mets" : "#FF5910", "Yankees" : "#E4002B", "Athletics" : "#003831", 
+  "Phillies" : "#284898", "Pirates" : "#FDB827", "Padres" : "#002D62", "Giants" : "#FD5A1E", "Mariners" : "#0C2C56", 
+  "Cardinals" : "#C41E3A", "Rays" : "#092C5C", "Rangers" : "#C0111F", "Blue Jays" : "#134A8E", "Nationals" : "#AB0003"
 };
 
 var LEAGUES = [ "NFL", "MLB", "NBA" ];
