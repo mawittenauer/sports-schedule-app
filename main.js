@@ -70,7 +70,7 @@ function setUpTeamSelector() {
   
   $('#selector').append($teamSelect);
   
-  $(document).on("change", "select", function() {
+  $('#selector').on("change", "select", function() {
     getSchedule("nfl", $teamSelect.val(), "2016");
   });
 }
