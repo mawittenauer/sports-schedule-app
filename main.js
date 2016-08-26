@@ -27,6 +27,7 @@ function Game() {
 }
 
 function setUpLeagueSelector() {
+  var league = '';
   var $leagueSelect = $('<select class="form-control" id="league-select">');
   var $defaultSelect = $('<option selected disabled hidden><strong>Select League Here</strong></option>');
   $leagueSelect.append($defaultSelect);
@@ -36,10 +37,6 @@ function setUpLeagueSelector() {
   });
   
   $('#selector').append($leagueSelect);
-  
-  $('#league-select').on("change", function() {
-    setUpTeamSelector($leagueSelect.val());
-  });
 }
 
 function getSchedule(league, team, season) {
@@ -95,7 +92,21 @@ function setUpTeamSelector(league) {
 }
 
 $(document).ready(function() {
-  setUpLeagueSelector();
+  var $leagueSelect = $('<select class="form-control" id="league-select">');
+  var $defaultSelect = $('<option selected disabled hidden><strong>Select League Here</strong></option>');
+  $leagueSelect.append($defaultSelect);
+  
+  LEAGUES.forEach(function(val) {
+    $leagueSelect.append('<option value=' + val + '>' + val + '</option>');
+  });
+  
+  $('#selector').append($leagueSelect);
+  $('#league-select').change(function() {
+    $('#league-select').siblings().remove();
+    var league = $('#league-select').val();
+    setUpTeamSelector(league);
+  });
+  
   $('#team-select').on("change", function() {
     getSchedule("nfl", "Bears", "2016");
   });
