@@ -12,7 +12,7 @@ var NBA_TEAM_COLORS = {
 
 var MLB_TEAM_COLORS = { "Indians" : "#E31937" }
 
-var LEAGUES = [ "NFL", "MLB" ];
+var LEAGUES = [ "NFL", "MLB", "NBA" ];
 
 var NFL_TEAMS = Object.keys(NFL_TEAM_COLORS);
 var MLB_TEAMS = Object.keys(MLB_TEAM_COLORS);
@@ -53,6 +53,11 @@ function getSchedule(league, team, season) {
             team + "%20and%20season%3D" + season + "&output=json&api_key=guest&jsoncallback=?";
   var schedule = [];
   $.getJSON(url, function(val) {
+    if (val === null) {
+      $('#team-name').text('');
+      $('#schedule tbody').html("<h1>" + team + " Schedule Not Yet Available</h1>");
+      return;
+    }
     for (var i = 0; i < val["groups"][0]["columns"][0].length; i++) {
       var game = new Game;
       game.startTime = val["groups"][0]["columns"][0][i];
