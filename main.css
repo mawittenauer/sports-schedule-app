@@ -13,3 +13,7 @@ h1, th {
 p, td, select, option {
   font-family: 'Pontano Sans', sans-serif;
 }
+
+select {
+  margin-bottom: 10px;
+}
