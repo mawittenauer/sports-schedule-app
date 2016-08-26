@@ -8,9 +8,16 @@ var NFL_TEAM_COLORS = {
 
 var NBA_TEAM_COLORS = {
   "Hawks" : "#E13A3E", "Celtics" : "#008348", "Brooklyn" : "#061922", "Hornets" : "#1D1160"
-}
+};
 
-var MLB_TEAM_COLORS = { "Indians" : "#E31937" }
+var MLB_TEAM_COLORS = { "Indians" : "#E31937", "Diamondbacks" : "#A71930", "Braves" : "#CE1141", "Orioles" : "#DF4601", 
+                       "Red Sox" : "#BD3039", "Cubs" : "#CC3433", "White Sox" : "#000000", "Reds" : "#C6011F",
+                       "Rockies" : "#333366", "Tigers" : "#0C2C56", "Astros" : "#002D62", "Royals" : "#004687",
+                       "Angels" : "#003263", "Dodgers" : "#EF3E42", "Marlins" : "#FF6600", "Brewers" : "#0A2351",
+                       "Twins" : "#002B5C", "Mets" : "#FF5910", "Yankees" : "#E4002B", "Athletics" : "#003831", "Phillies" : "#284898",
+                       "Pirates" : "#FDB827", "Padres" : "#002D62", "Giants" : "#FD5A1E", "Mariners" : "#0C2C56", "Cardinals" : "#C41E3A",
+                       "Rays" : "#092C5C", "Ranges" : "#C0111F", "Blue Jays" : "#134A8E", "Nationals" : "#AB0003"
+};
 
 var LEAGUES = [ "NFL", "MLB", "NBA" ];
 
@@ -52,6 +59,7 @@ function getSchedule(league, team, season) {
             league + "/query.json?sdql=start%20time%2Cdate%2Co:team%2Csite%40team%3D" + 
             team + "%20and%20season%3D" + season + "&output=json&api_key=guest&jsoncallback=?";
   var schedule = [];
+  team = decodeURI(team);
   $.getJSON(url, function(val) {
     if (val === null) {
       $('#team-name').text('');
@@ -109,7 +117,7 @@ function setUpTeamSelector(league) {
   }
   
   teams.forEach(function(val) {
-    $teamSelect.append('<option value=' + val + '>' + val + '</option>');
+    $teamSelect.append('<option value=' + encodeURI(val) + '>' + val + '</option>');
   });
   
   $('#selector').append($teamSelect);
