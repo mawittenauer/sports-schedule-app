@@ -82,7 +82,9 @@ function getSchedule(league, team, season) {
         game.startTime = getFormattedTime(start.toString()); 
       }
       game.opponent = val["groups"][0]["columns"][2][i];
-      game.date = val["groups"][0]["columns"][1][i];
+      var unformattedDate = val["groups"][0]["columns"][1][i];
+      var formattedDate = unformattedDate.toString().substr(4, 2) + '-' + unformattedDate.toString().substr(6, 2);
+      game.date = formattedDate;
       game.venue = val["groups"][0]["columns"][3][i];
       schedule.push(game);
     }
@@ -108,8 +110,7 @@ function displaySchedule(league, team, season, schedule) {
     $tableRow.append('<td>' + val.opponent + '</td>');
     $('#schedule tbody').append($tableRow);
     $tableRow.append('<td>' + val.venue + '</td>');
-    var formattedDate = val.date.toString().substr(4, 2) + '-' + val.date.toString().substr(6, 2);
-    $tableRow.append('<td>' + formattedDate + '</td>');
+    $tableRow.append('<td>' + val.date + '</td>');
     $tableRow.append('<td>' + val.startTime + '</td>');
   });
 }
