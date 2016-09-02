@@ -13,7 +13,7 @@ var NBA_TEAM_COLORS = {
   "Cavaliers" : "#FDBB30", "Mavericks" : "#007DC5", "Nuggets" : "#4D90CD", "Pistons" : "#ED174C", "Warriors" : "#FDB927",
   "Rockets" : "#CE1141", "Pacers" : "#FFC633", "Clippers" : "#ED174C", "Lakers" : "#552582", "Grizzlies" : "#0F586C",
   "Heat" : "#98002E", "Bucks" : "#00471B", "Timberwolves" : "#005083", "Pelicans" : "#002B5C", "Knicks" : "#006BB6",
-  "Thunder" : "#007DC3", "Magic" : "#007DC5", "76ERS" : "#ED174C", "Suns" : "#E56020", "Trail Blazers" : "#E03A3E",
+  "Thunder" : "#007DC3", "Magic" : "#007DC5", "Seventysixers" : "#ED174C", "Suns" : "#E56020", "Trailblazers" : "#E03A3E",
   "Kings" : "#724C9F", "Spurs" : "#BAC3C9", "Raptors" : "#CE1141", "Jazz" : "#002B5C", "Wizards" : "#002B5C"
 };
 
@@ -72,7 +72,6 @@ function getSchedule(league, team, season) {
             league + "/query.json?sdql=" + uriStart + "%2Cdate%2Co:team%2Csite%40team%3D" + 
             team + "%20and%20season%3D" + season + "&output=json&api_key=guest&jsoncallback=?";
   var schedule = [];
-  console.log(url);
   team = decodeURI(team);
   $.getJSON(url, function(val) {
     if (val === null) {
