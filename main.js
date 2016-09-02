@@ -11,7 +11,7 @@ var NFL_TEAM_COLORS = {
 var NBA_TEAM_COLORS = {
   "Hawks" : "#E13A3E", "Celtics" : "#008348", "Nets" : "#061922", "Hornets" : "#1D1160", "Bulls" : "#CE1141",
   "Cavaliers" : "#FDBB30", "Mavericks" : "#007DC5", "Nuggets" : "#4D90CD", "Pistons" : "#ED174C", "Warriors" : "#FDB927",
-  "Rockets" : "#CE1141", "Pacers" : "#FFC633", "Clippers" : "#ED1744C", "Lakers" : "#552582", "Grizzlies" : "#0F586C",
+  "Rockets" : "#CE1141", "Pacers" : "#FFC633", "Clippers" : "#ED174C", "Lakers" : "#552582", "Grizzlies" : "#0F586C",
   "Heat" : "#98002E", "Bucks" : "#00471B", "Timberwolves" : "#005083", "Pelicans" : "#002B5C", "Knicks" : "#006BB6",
   "Thunder" : "#007DC3", "Magic" : "#007DC5", "76ERS" : "#ED174C", "Suns" : "#E56020", "Trail Blazers" : "#E03A3E",
   "Kings" : "#724C9F", "Spurs" : "#BAC3C9", "Raptors" : "#CE1141", "Jazz" : "#002B5C", "Wizards" : "#002B5C"
