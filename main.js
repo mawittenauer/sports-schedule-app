@@ -149,6 +149,8 @@ $(document).ready(function() {
   $('#league-select').change(function() {
     $('#league-select').siblings().remove();
     var league = $('#league-select').val();
+    $('#schedule tbody').html('');
+    $('#team-name').html('');
     setUpTeamSelector(league);
   });
   
