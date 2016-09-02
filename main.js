@@ -28,9 +28,9 @@ var MLB_TEAM_COLORS = {
 
 var LEAGUES = [ "NFL", "MLB", "NBA" ];
 
-var NFL_TEAMS = Object.keys(NFL_TEAM_COLORS);
-var MLB_TEAMS = Object.keys(MLB_TEAM_COLORS);
-var NBA_TEAMS = Object.keys(NBA_TEAM_COLORS)
+var NFL_TEAMS = Object.keys(NFL_TEAM_COLORS).sort();
+var MLB_TEAMS = Object.keys(MLB_TEAM_COLORS).sort();
+var NBA_TEAMS = Object.keys(NBA_TEAM_COLORS).sort();
 
 function getFormattedTime(fourDigitTime) {
     var hours24 = parseInt(fourDigitTime.substring(0, 2), 10);
